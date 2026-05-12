@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chris Sturm Therapeutic Massage — Portland, Oregon. Purposeful work for bodies in motion and systems that need to reset.">
+<title>Chris Sturm Therapeutic Massage | Portland, OR</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sage: #7a9e87;
+    --sage-light: #e8f0eb;
+    --blue-slate: #5b7f95;
+    --stone: #8c8578;
+    --stone-light: #f4f2ee;
+    --text-dark: #2a2d2b;
+    --text-mid: #5a5e5c;
+    --text-muted: #8f9490;
+    --white: #fafaf8;
+    --border: rgba(90, 110, 95, 0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--white); color: var(--text-dark); font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(250,250,248,0.92); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--text-dark); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--sage); }
+
+  /* BUTTONS */
+  .btn { display: inline-block; padding: 0.7rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--sage); color: var(--sage); background: transparent; cursor: pointer; transition: all 0.25s; }
+  .btn:hover { background: var(--sage); color: var(--white); }
+  .btn-light { border-color: rgba(250,250,248,0.4); color: var(--white); }
+  .btn-light:hover { background: rgba(250,250,248,0.1); color: var(--white); }
+
+  section { padding: 6rem 3rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 5rem; background: var(--white); }
+  .hero-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; width: 100%; }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.5rem; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 3.2rem; line-height: 1.15; color: var(--text-dark); margin-bottom: 1.5rem; }
+  .hero-headline em { font-style: italic; color: var(--sage); }
+  .hero-sub { font-size: 1rem; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 380px; line-height: 1.8; }
+  .hero-visual { aspect-ratio: 3/4; border-radius: 2px; overflow: hidden; }
+  .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  /* Fallback if no image */
+  .hero-visual-placeholder { width: 100%; height: 100%; background: linear-gradient(160deg, #ddeae1 0%, #c9ddd0 40%, #b8d0c0 100%); display: flex; align-items: flex-end; justify-content: center; padding: 2rem; }
+  .placeholder-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--sage); opacity: 0.7; }
+
+  /* STRIP */
+  .strip { background: var(--sage-light); padding: 3rem; }
+  .strip-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center; }
+  .strip-item-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+  .strip-item-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--text-dark); }
+
+  /* ABOUT */
+  .about-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.5rem; }
+  .section-number { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: var(--sage-light); line-height: 1; }
+  .about-heading { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1.2; color: var(--text-dark); margin-bottom: 1.5rem; }
+  .about-body { color: var(--text-mid); margin-bottom: 1.25rem; font-size: 0.97rem; }
+
+  /* SERVICES */
+  .services { background: var(--stone-light); }
+  .services-heading { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.5rem; }
+  .services-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--white); padding: 2rem; border: 0.5px solid var(--border); }
+  .service-duration { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.75rem; }
+  .service-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.5rem; }
+  .service-price { font-size: 0.85rem; color: var(--stone); border-top: 0.5px solid var(--border); padding-top: 1rem; }
+
+  /* APPROACH */
+  .approach-inner { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; align-items: center; }
+  .approach-heading { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; font-style: italic; line-height: 1.2; color: var(--text-dark); margin-bottom: 2rem; }
+  .approach-body { color: var(--text-mid); font-size: 0.97rem; margin-bottom: 1.25rem; }
+  .pull-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--sage); line-height: 1.4; padding-left: 1.5rem; border-left: 1px solid var(--sage); }
+
+  /* BOOKING */
+  .booking { background: var(--text-dark); color: var(--white); text-align: center; }
+  .booking-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+  .booking-heading { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  .booking-sub { color: rgba(250,250,248,0.6); font-size: 0.95rem; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .booking-btns { display: flex; gap: 1rem; justify-content: center; }
+
+  /* FOOTER */
+  footer { padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--text-mid); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
+  .footer-license { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { aspect-ratio: 4/3; }
+    .hero-headline { font-size: 2.4rem; }
+    .strip-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .section-number { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .approach-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Chris Sturm &nbsp;·&nbsp; Therapeutic Massage</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#book">Book</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Portland, Oregon &nbsp;·&nbsp; Licensed Massage Therapist</p>
+      <h1 class="hero-headline">
+        Recover.<br>
+        Downshift.<br>
+        <em>Reset.</em>
+      </h1>
+      <p class="hero-sub">Purposeful work for bodies in motion — and systems that need to reset.</p>
+      <a href="#book" class="btn">Book a Session</a>
+    </div>
+    <div class="hero-visual">
+      <!-- Replace with: <img src="images/chris-headshot.jpg" alt="Chris Sturm, Licensed Massage Therapist"> -->
+      <div class="hero-visual-placeholder">
+        <p class="placeholder-text">photo — chris-headshot.jpg</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div>
+      <p class="strip-item-label">Location</p>
+      <p class="strip-item-value">Portland, OR</p>
+    </div>
+    <div>
+      <p class="strip-item-label">Sessions</p>
+      <p class="strip-item-value">60 &amp; 90 min</p>
+    </div>
+    <div>
+      <p class="strip-item-label">Approach</p>
+      <p class="strip-item-value">Nervous System First</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <p class="section-label">About</p>
+        <p class="section-number">01</p>
+      </div>
+      <div>
+        <h2 class="about-heading">Bodywork rooted in presence, not protocol.</h2>
+        <p class="about-body">I'm Chris Sturm, a licensed massage therapist based in Portland. My work centers on the nervous system — helping people downshift out of chronic activation, recover from the demands of an active life, and find their way back to ease in their own bodies.</p>
+        <p class="about-body">I came to massage therapy after 25 years in tech, drawn by a simple truth: bodies need skilled, intentional touch to regulate, restore, and heal. Every session is shaped by real-time feedback — not a fixed routine — so the work meets you where you actually are.</p>
+        <p class="about-body">I trained at East West College of the Healing Arts in Portland. My background in movement, yoga, and somatic awareness informs how I listen and how I work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="container">
+    <p class="section-label">Services</p>
+    <h2 class="services-heading">What a session looks like</h2>
+    <p class="services-sub">All sessions begin with a brief intake conversation. Techniques are adapted in real time to what your body needs that day.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-duration">60 minutes</p>
+        <h3 class="service-name">Therapeutic Massage</h3>
+        <p class="service-desc">Focused, adaptive bodywork targeting your primary areas of tension, restriction, or holding. Good for maintenance and targeted relief.</p>
+        <p class="service-price">$120</p>
+      </div>
+      <div class="service-card">
+        <p class="service-duration">90 minutes</p>
+        <h3 class="service-name">Full-Body Reset</h3>
+        <p class="service-desc">Time and space to work through the whole system — not just the loud places. Integrative, unhurried, and attentive to the nervous system throughout.</p>
+        <p class="service-price">$175</p>
+      </div>
+      <div class="service-card">
+        <p class="service-duration">Ongoing</p>
+        <h3 class="service-name">Injury &amp; Recovery</h3>
+        <p class="service-desc">For people navigating repetitive strain, post-injury rehab, or chronic holding patterns. Clinical where needed, nervous-system-aware throughout.</p>
+        <p class="service-price">Session rates apply</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="approach-inner">
+      <div>
+        <p class="section-label">Approach</p>
+        <h2 class="approach-heading">Your body isn't a problem to solve. It's a system to listen to.</h2>
+        <p class="approach-body">Most of us live in a state of chronic low-grade activation — nervous systems running hot, bodies braced against the next thing. Therapeutic massage isn't just about muscle tension. It's about helping your system remember how to downshift.</p>
+        <p class="approach-body">I work with presence and precision, adapting to real-time feedback rather than following a fixed sequence. Sessions can be quiet and deeply restorative, or targeted and clinical — often both within the same hour.</p>
+        <p class="approach-body">If there's an injury or structural issue involved, I bring that into the frame too. But I don't let the clinical part override the relational one. The nervous system is always part of the picture.</p>
+      </div>
+      <div>
+        <p class="pull-quote">"Purposeful work for bodies in motion — and systems that need to reset."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book" class="booking">
+  <div class="container">
+    <p class="booking-eyebrow">Ready when you are</p>
+    <h2 class="booking-heading">Book a session</h2>
+    <p class="booking-sub">Online booking coming soon. In the meantime, reach out directly and we'll find a time that works.</p>
+    <div class="booking-btns">
+      <a href="mailto:chris@sturmmassage.com" class="btn btn-light">Send an Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-name">Chris Sturm Therapeutic Massage &nbsp;·&nbsp; Portland, OR</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#book">Book</a></li>
+  </ul>
+  <p class="footer-license">© 2026</p>
+</footer>
+
+</body>
+</html>
