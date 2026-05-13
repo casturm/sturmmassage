@@ -47,6 +47,19 @@
   .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--sage); }
 
+  /* HAMBURGER */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text-dark); transition: transform 0.3s, opacity 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* MOBILE OVERLAY */
+  .nav-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: var(--white); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .nav-overlay.open { display: flex; }
+  .nav-overlay a { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 0.08em; color: var(--text-dark); text-decoration: none; transition: color 0.2s; }
+  .nav-overlay a:hover { color: var(--sage); }
+
   .btn { display: inline-block; padding: 0.7rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--sage); color: var(--sage); background: transparent; cursor: pointer; transition: all 0.25s; }
   .btn:hover { background: var(--sage); color: var(--white); }
   .btn-light { border-color: rgba(250,250,248,0.4); color: var(--white); }
@@ -111,10 +124,12 @@
 
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
     section { padding: 4rem 1.5rem; }
     .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-visual { aspect-ratio: 4/3; }
+    .hero-visual { aspect-ratio: 1/1; }
+    .hero-visual img { object-position: center 15%; }
     .hero-headline { font-size: 2.4rem; }
     .strip-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .about-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -136,7 +151,17 @@
     <li><a href="#approach">Approach</a></li>
     <li><a href="#book">Book</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-overlay" id="nav-overlay">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#approach">Approach</a>
+  <a href="#book">Book</a>
+</div>
 
 <section class="hero" id="home">
   <div class="hero-inner">
@@ -282,6 +307,25 @@
 </footer>
 
 <script>
+  const hamburger = document.querySelector('.nav-hamburger');
+  const overlay = document.getElementById('nav-overlay');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = overlay.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  overlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      overlay.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    });
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
